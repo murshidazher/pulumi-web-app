@@ -4,10 +4,8 @@
 
 - 🚀 Publish a react web application in AWS.
 - 🔒 Securing the response headers with `Lambda@Edge`, to check your application header [here](https://securityheaders.com/).
-  - More information on [how Pulumi uses Lambda@Edge to solve security header issues](https://github.com/pulumi/pulumitv/tree/master/modern-infrastructure-wednesday/2020-06-24).
+  - More information on [How Pulumi uses Lambda@Edge to solve security header issues](https://github.com/pulumi/pulumitv/tree/master/modern-infrastructure-wednesday/2020-06-24).
   - In essence, some security header would be missed for example `Strict-Transport-Security`. `Lambda@Edge` is used to intercept the response back to the user and add the required headers to secure the website.
-
----
 
 ## Before You Begin
 
