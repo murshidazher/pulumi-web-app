@@ -1,12 +1,14 @@
 # [pulumi-web-app](https://github.com/murshidazher/pulumi-web-app)
 
-> 🐛 A pulumi infrastructure as code demonstration with react web app
+> 🐛 A Pulumi infrastructure as code demonstration with react web app.
 
 - Publish a react web application in AWS.
+- Securing the response headers with `Lambda@Edge`, to check your application header [here](https://securityheaders.com/) and more information on [how pulumi uses Lambda@Edge to solve security header issues](https://github.com/pulumi/pulumitv/tree/master/modern-infrastructure-wednesday/2020-06-24)
+  - In essence, `Lambda@Edge` is used to intercept the response back to the user and add the required headers to secure the website.
 
 ## Before You Begin
 
-> :bulb: More information on pulumi [setup](https://www.pulumi.com/docs/get-started/aws/begin/)
+> :bulb: More information on Pulumi [setup](https://www.pulumi.com/docs/get-started/aws/begin/)
 
 Before we get started using this repository, let’s run through a few quick steps to ensure our environment is setup correctly.
 

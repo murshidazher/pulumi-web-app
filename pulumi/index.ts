@@ -122,8 +122,8 @@ const cloudFrontDistribution = new aws.cloudfront.Distribution(
         queryString: false,
       },
       minTtl: 0,
-      defaultTtl: 3600,
-      maxTtl: 86400,
+      defaultTtl: 10, // 3600s
+      maxTtl: 10, // 86400s
     },
     /**
      * For more Granular Caching using Path Patterns
@@ -163,6 +163,7 @@ const cloudFrontDistribution = new aws.cloudfront.Distribution(
     //   minimumProtocolVersion: 'TLSv1.2_2019',
     //   sslSupportMethod: 'sni-only',
     // },
+
     restrictions: {
       geoRestriction: {
         locations: [],
