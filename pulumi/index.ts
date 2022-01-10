@@ -4,6 +4,7 @@ import * as mime from "mime";
 import * as fs from "fs";
 import * as path from "path";
 import { getRelativeFilePaths } from "./utils";
+import lambdaArn from "./securityHeaderEdgeLambda";
 
 
 const uuid = "0YzP7fxvCTKFZRz";
@@ -124,6 +125,13 @@ const cloudFrontDistribution = new aws.cloudfront.Distribution(
       minTtl: 0,
       defaultTtl: 10, // 3600s
       maxTtl: 10, // 86400s
+      lambdaFunctionAssociations: [
+        {
+          eventType: "viewer-response",
+          includeBody: false,
+          lambdaArn,
+        },
+      ]
     },
     /**
      * For more Granular Caching using Path Patterns
@@ -187,4 +195,8 @@ const cloudFrontDistribution = new aws.cloudfront.Distribution(
 // Exports
 export const s3Bucket = bucket.bucket;
 export const cfDomainName = cloudFrontDistribution.domainName;
+export const cfDistributionArn = cloudFrontDistribution.arn;
+export const cfDistributionId = cloudFrontDistribution.id;
+
+
 

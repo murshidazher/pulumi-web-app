@@ -4,7 +4,7 @@
 
 - Publish a react web application in AWS.
 - Securing the response headers with `Lambda@Edge`, to check your application header [here](https://securityheaders.com/) and more information on [how pulumi uses Lambda@Edge to solve security header issues](https://github.com/pulumi/pulumitv/tree/master/modern-infrastructure-wednesday/2020-06-24)
-  - In essence, `Lambda@Edge` is used to intercept the response back to the user and add the required headers to secure the website.
+  - In essence, some security header would be missed for example `Strict-Transport-Security`. `Lambda@Edge` is used to intercept the response back to the user and add the required headers to secure the website.
 
 ## Before You Begin
 
@@ -77,6 +77,12 @@ To manually put files to the `s3` bucket,
 
 ```sh
 AWS_PROFILE=<profile> aws s3 sync ./build s3://{your_s3_bucket_name} --delete
+```
+
+To invalidate caches,
+
+```sh
+aws cloudfront create-invalidation --distribution-id {your_distribution_id} --paths '/*'
 ```
 
 ## LICENSE
