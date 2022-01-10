@@ -40,7 +40,7 @@ const lambda = new aws.lambda.CallbackFunction(
       //Get contents of response
       const response = event.Records[0].cf.response;
       const headers = response.headers;
-      const defaultTimeToLive = 60 * 1 * 1 * 1; // 60s (60 * 60 * 24 * 365 = 1 year)
+      const defaultTimeToLive = 60 * 60 * 24 * 365; // 60 * 60 * 24 * 365 = 1 year
       headers["strict-transport-security"] = [
         {
           key: "Strict-Transport-Security",

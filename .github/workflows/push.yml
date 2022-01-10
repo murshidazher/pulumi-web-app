@@ -30,7 +30,7 @@ jobs:
         run: |
           npm run build:react
 
-      - name: Preview Pulumi Changes
+      - name: Deploy Pulumi Changes
         uses: pulumi/actions@v3
         with:
           command: up
@@ -39,3 +39,10 @@ jobs:
           upsert: true
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+
+      - name: Invalidate CloudFront
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+        working-directory: ./pulumi
+        run: |
+          aws cloudfront create-invalidation --distribution-id $(pulumi stack output cfDistributionId) --paths '/*'

@@ -123,8 +123,8 @@ const cloudFrontDistribution = new aws.cloudfront.Distribution(
         queryString: false,
       },
       minTtl: 0,
-      defaultTtl: 10, // 3600s
-      maxTtl: 10, // 86400s
+      defaultTtl: 3600, // 3600s
+      maxTtl: 86400, // 86400s
       lambdaFunctionAssociations: [
         {
           eventType: "viewer-response",
@@ -197,6 +197,3 @@ export const s3Bucket = bucket.bucket;
 export const cfDomainName = cloudFrontDistribution.domainName;
 export const cfDistributionArn = cloudFrontDistribution.arn;
 export const cfDistributionId = cloudFrontDistribution.id;
-
-
-
