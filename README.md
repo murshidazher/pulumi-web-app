@@ -3,6 +3,7 @@
 > 🐛 A Pulumi infrastructure as code demonstration with react web app.
 
 - 🚀 Publish a react web application in AWS.
+- 🛼 All automated pipelines are configured using [Github Workflow](./.github/workflows/)
 - 🔒 Securing the response headers with `Lambda@Edge`, to check your application header [here](https://securityheaders.com/).
   - More information on [How Pulumi uses Lambda@Edge to solve security header issues](https://github.com/pulumi/pulumitv/tree/master/modern-infrastructure-wednesday/2020-06-24).
   - In essence, some security header would be missed for example `Strict-Transport-Security`. `Lambda@Edge` is used to intercept the response back to the user and add the required headers to secure the website.
