@@ -34,8 +34,19 @@ TBA
 
 ```sh
 git clone git@github.com:murshidazher/pulumi-web-app.git
-cd pulumi && npm install
-cd ../react-app && npm install
+npm run install
+npm run deploy
+```
+
+```sh
+AWS_PROFILE=<profile> pulumi console #  for more information of stack
+```
+
+To see the outputs,
+
+```sh
+AWS_PROFILE=<profile> pulumi stack output
+AWS_PROFILE=<profile> aws s3 ls $(pulumi stack output s3Bucket)
 ```
 
 ## Development

@@ -1,10 +1,14 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as aws from "@pulumi/aws";
-import { nanoid } from "nanoid";
+import * as mime from "mime";
+import * as fs from "fs";
+import * as path from "path";
+import { getRelativeFilePaths } from "./utils";
 
-const uuid = nanoid();
 
-// setup an private S3 bucket
+const uuid = "0YzP7fxvCTKFZRz";
+
+// Create an Private S3 bucket
 const bucketName = `pulumi-webapp-${uuid}`;
 const bucket = new aws.s3.Bucket(bucketName, {
   website: {
@@ -13,7 +17,26 @@ const bucket = new aws.s3.Bucket(bucketName, {
   },
 });
 
-// use OriginAccessIdentity to allow cloudfront to read from S3
+// Put the files to directory
+let siteDir = path.join(__dirname, "..","react-app", "build");
+
+
+// Put all the static files to the bucket
+const staticFilePaths = getRelativeFilePaths(siteDir);
+
+staticFilePaths.forEach((blob: string) => {
+  let filePath = path.join(siteDir, blob);
+  let file = path.parse(blob).base
+  let object = new aws.s3.BucketObject(blob, {
+    bucket: bucket.bucket,
+    // use FileAsset to point to a file
+    source: new pulumi.asset.FileAsset(filePath),
+    // set the MIME type of the file
+    contentType: mime.getType(filePath) || undefined,
+  });
+});
+
+// Use OriginAccessIdentity to allow cloudfront to read from S3
 const originAccessIdentity = new aws.cloudfront.OriginAccessIdentity(
   `pulumi-origin-access-identity-${uuid}`,
   {
@@ -21,7 +44,7 @@ const originAccessIdentity = new aws.cloudfront.OriginAccessIdentity(
   }
 );
 
-// create public S3 read policy
+// Create public S3 read policy
 function publicReadPolicyForBucket(
   _bucketName: string,
   _originAccessArn: string
@@ -42,7 +65,7 @@ function publicReadPolicyForBucket(
   });
 }
 
-// associate the bucket policy with the cloudfront
+// Associate the bucket policy with the cloudfront
 const bucketPolicy = new aws.s3.BucketPolicy(`${bucketName}-policy`, {
   bucket: bucket.bucket,
   policy: pulumi
@@ -160,7 +183,7 @@ const cloudFrontDistribution = new aws.cloudfront.Distribution(
 );
 
 
-// exports
+// Exports
 export const s3Bucket = bucket.bucket;
 export const cfDomainName = cloudFrontDistribution.domainName;
 
