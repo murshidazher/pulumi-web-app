@@ -49,6 +49,18 @@ AWS_PROFILE=<profile> pulumi stack output
 AWS_PROFILE=<profile> aws s3 ls $(pulumi stack output s3Bucket)
 ```
 
+To destroy the whole stack,
+
+```sh
+AWS_PROFILE=<profile> pulumi destroy
+```
+
+To destroy the staging,
+
+```sh
+AWS_PROFILE=<profile> pulumi destroy -s <stagename> --force
+```
+
 ## Development
 
 For getting development from scratch,
@@ -57,6 +69,12 @@ For getting development from scratch,
 mkdir pulumi && AWS_PROFILE=<profile> pulumi new aws-typescript # create a pulumi account
 cd .. && npx create-react-app react-app
 cd react-app && yarn build
+```
+
+To manually put files to the `s3` bucket,
+
+```sh
+AWS_PROFILE=<profile> aws s3 sync ./build s3://{your_s3_bucket_name} --delete
 ```
 
 ## LICENSE
