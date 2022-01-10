@@ -2,9 +2,12 @@
 
 > 🐛 A Pulumi infrastructure as code demonstration with react web app.
 
-- Publish a react web application in AWS.
-- Securing the response headers with `Lambda@Edge`, to check your application header [here](https://securityheaders.com/) and more information on [how pulumi uses Lambda@Edge to solve security header issues](https://github.com/pulumi/pulumitv/tree/master/modern-infrastructure-wednesday/2020-06-24)
+- 🚀 Publish a react web application in AWS.
+- 🔒 Securing the response headers with `Lambda@Edge`, to check your application header [here](https://securityheaders.com/).
+  - More information on [how Pulumi uses Lambda@Edge to solve security header issues](https://github.com/pulumi/pulumitv/tree/master/modern-infrastructure-wednesday/2020-06-24).
   - In essence, some security header would be missed for example `Strict-Transport-Security`. `Lambda@Edge` is used to intercept the response back to the user and add the required headers to secure the website.
+
+---
 
 ## Before You Begin
 
@@ -32,13 +35,38 @@ export AWS_SECRET_ACCESS_KEY=<YOUR_SECRET_ACCESS_KEY>
 
 ## Installation & Usage
 
-TBA
+> If this your first time using Pulumi then you might be create an account in `Pulumi` where it manages your state files.
+
+Clone the repository, install the dependencies and deploy,
 
 ```sh
 git clone git@github.com:murshidazher/pulumi-web-app.git
 npm run install
+```
+
+:rocket: To deploy the whole infrastructure,
+
+```sh
 npm run deploy
 ```
+
+## Destroying / Teardown
+
+:boom: To destroy the whole stack,
+
+```sh
+AWS_PROFILE=<profile> pulumi destroy
+```
+
+:boom: To destroy the staging,
+
+```sh
+AWS_PROFILE=<profile> pulumi destroy -s <stagename> --force
+```
+
+## Other Commands
+
+To see the console,
 
 ```sh
 AWS_PROFILE=<profile> pulumi console #  for more information of stack
@@ -49,18 +77,6 @@ To see the outputs,
 ```sh
 AWS_PROFILE=<profile> pulumi stack output
 AWS_PROFILE=<profile> aws s3 ls $(pulumi stack output s3Bucket)
-```
-
-To destroy the whole stack,
-
-```sh
-AWS_PROFILE=<profile> pulumi destroy
-```
-
-To destroy the staging,
-
-```sh
-AWS_PROFILE=<profile> pulumi destroy -s <stagename> --force
 ```
 
 ## Development
