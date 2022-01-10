@@ -6,7 +6,7 @@
   "scripts": {
     "build:react": "cd react-app && npm build",
     "deploy": "npm run build:react && npm run deploy:pulumi",
-    "deploy:pulumi": "cd pulumi && AWS_PROFILE=<profile> pulumi up -y",
+    "deploy:pulumi": "cd pulumi && pulumi up -y",
     "install": "npm run install:pulumi && npm run install:react",
     "install:pulumi": "cd pulumi && npm install",
     "install:react": "cd react-app && npm install",
