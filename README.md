@@ -2,6 +2,8 @@
 
 > 🐛 A pulumi infrastructure as code demonstration with react web app
 
+- Publish a react web application in AWS.
+
 ## Before You Begin
 
 > :bulb: More information on pulumi [setup](https://www.pulumi.com/docs/get-started/aws/begin/)
@@ -32,7 +34,18 @@ TBA
 
 ```sh
 git clone git@github.com:murshidazher/pulumi-web-app.git
-...
+cd pulumi && npm install
+cd ../react-app && npm install
+```
+
+## Development
+
+For getting development from scratch,
+
+```sh
+mkdir pulumi && AWS_PROFILE=<profile> pulumi new aws-typescript # create a pulumi account
+cd .. && npx create-react-app react-app
+cd react-app && yarn build
 ```
 
 ## LICENSE

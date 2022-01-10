@@ -1,0 +1,27 @@
+{
+  "name": "pulumi-web-app",
+  "version": "0.0.1",
+  "description": "A react-app with api gateway custom domain demonstration with pulumi",
+  "main": "pulumi/index.ts",
+  "scripts": {
+    "build:react": "cd react-app && npm build",
+    "deploy": "npm run build:react",
+    "install": "npm run install:pulumi && npm run install:react",
+    "install:pulumi": "cd pulumi && npm install",
+    "install:react": "cd react-app && npm install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/murshidazher/pulumi-web-app.git"
+  },
+  "keywords": [
+    "pulumi"
+  ],
+  "author": "Murshid Azher",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/murshidazher/pulumi-web-app/issues"
+  },
+  "homepage": "https://github.com/murshidazher/pulumi-web-app#readme"
+}
