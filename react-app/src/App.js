@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          This deployment was done using github PR and Push workflow
+          This deployment was made using Github PR and Push Workflows.
         </p>
         <a
           className="App-link"
